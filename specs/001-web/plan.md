@@ -40,7 +40,10 @@
 **Target Platform**: Web browsers (latest versions of Chrome, Firefox, Safari, Edge)  
 **Project Type**: Web application (frontend + backend)  
 **Performance Goals**: Initial load time < 3 seconds, user interaction latency < 100ms  
-**Constraints**: Must work offline for note-taking; no external API dependencies  
+**Constraints**: Must work offline for note-taking; no external API dependencies. Lightweight application defined as:
+- Memory usage < 50MB
+- Initial load time < 3 seconds
+- Interaction latency < 100ms
 **Scale/Scope**: Designed for individual users, lightweight application
 
 ## Constitution Check
