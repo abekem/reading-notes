@@ -1,56 +1,56 @@
 ---
-description: Execute the implementation plan by processing and executing all tasks defined in tasks.md
+description: tasks.mdに定義されたすべてのタスクを処理および実行することで、実装計画を実行します。
 ---
 
-The user input can be provided directly by the agent or as a command argument - you **MUST** consider it before proceeding with the prompt (if not empty).
+ユーザー入力は、エージェントによって直接提供されるか、コマンド引数として提供される可能性があります。**必ず**それを考慮してプロンプトを進めてください（空でない場合）。
 
-User input:
+ユーザー入力:
 
 $ARGUMENTS
 
-1. Run `.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks` from repo root and parse FEATURE_DIR and AVAILABLE_DOCS list. All paths must be absolute.
+1. リポジトリのルートから`.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks`を実行し、FEATURE_DIRとAVAILABLE_DOCSリストを解析します。すべてのパスは絶対パスでなければなりません。
 
-2. Load and analyze the implementation context:
-   - **REQUIRED**: Read tasks.md for the complete task list and execution plan
-   - **REQUIRED**: Read plan.md for tech stack, architecture, and file structure
-   - **IF EXISTS**: Read data-model.md for entities and relationships
-   - **IF EXISTS**: Read contracts/ for API specifications and test requirements
-   - **IF EXISTS**: Read research.md for technical decisions and constraints
-   - **IF EXISTS**: Read quickstart.md for integration scenarios
+2. 実装コンテキストを読み込み、分析します:
+   - **必須**: tasks.mdを読み込み、完全なタスクリストと実行計画を取得
+   - **必須**: plan.mdを読み込み、技術スタック、アーキテクチャ、ファイル構造を取得
+   - **存在する場合**: data-model.mdを読み込み、エンティティと関係を取得
+   - **存在する場合**: contracts/ディレクトリを読み込み、API仕様とテスト要件を取得
+   - **存在する場合**: research.mdを読み込み、技術的な決定と制約を取得
+   - **存在する場合**: quickstart.mdを読み込み、統合シナリオを取得
 
-3. Parse tasks.md structure and extract:
-   - **Task phases**: Setup, Tests, Core, Integration, Polish
-   - **Task dependencies**: Sequential vs parallel execution rules
-   - **Task details**: ID, description, file paths, parallel markers [P]
-   - **Execution flow**: Order and dependency requirements
+3. tasks.mdの構造を解析し、以下を抽出:
+   - **タスクフェーズ**: セットアップ、テスト、コア、統合、仕上げ
+   - **タスク依存関係**: 逐次実行と並列実行のルール
+   - **タスク詳細**: ID、説明、ファイルパス、並列マーカー[P]
+   - **実行フロー**: 順序と依存関係の要件
 
-4. Execute implementation following the task plan:
-   - **Phase-by-phase execution**: Complete each phase before moving to the next
-   - **Respect dependencies**: Run sequential tasks in order, parallel tasks [P] can run together  
-   - **Follow TDD approach**: Execute test tasks before their corresponding implementation tasks
-   - **File-based coordination**: Tasks affecting the same files must run sequentially
-   - **Validation checkpoints**: Verify each phase completion before proceeding
+4. タスク計画に従って実装を実行:
+   - **フェーズごとの実行**: 次のフェーズに進む前に各フェーズを完了
+   - **依存関係を尊重**: 逐次タスクは順番に実行し、並列タスク[P]は一緒に実行可能
+   - **TDDアプローチに従う**: 対応する実装タスクの前にテストタスクを実行
+   - **ファイルベースの調整**: 同じファイルに影響を与えるタスクは逐次実行
+   - **検証チェックポイント**: 各フェーズの完了を確認してから次に進む
 
-5. Implementation execution rules:
-   - **Setup first**: Initialize project structure, dependencies, configuration
-   - **Tests before code**: If you need to write tests for contracts, entities, and integration scenarios
-   - **Core development**: Implement models, services, CLI commands, endpoints
-   - **Integration work**: Database connections, middleware, logging, external services
-   - **Polish and validation**: Unit tests, performance optimization, documentation
+5. 実装実行ルール:
+   - **最初にセットアップ**: プロジェクト構造、依存関係、構成を初期化
+   - **コードの前にテスト**: 契約、エンティティ、統合シナリオのテストを書く必要がある場合
+   - **コア開発**: モデル、サービス、CLIコマンド、エンドポイントを実装
+   - **統合作業**: データベース接続、ミドルウェア、ロギング、外部サービス
+   - **仕上げと検証**: 単体テスト、パフォーマンス最適化、ドキュメント作成
 
-6. Progress tracking and error handling:
-   - Report progress after each completed task
-   - Halt execution if any non-parallel task fails
-   - For parallel tasks [P], continue with successful tasks, report failed ones
-   - Provide clear error messages with context for debugging
-   - Suggest next steps if implementation cannot proceed
-   - **IMPORTANT** For completed tasks, make sure to mark the task off as [X] in the tasks file.
+6. 進捗追跡とエラー処理:
+   - 各タスク完了後に進捗を報告
+   - 非並列タスクが失敗した場合、実行を停止
+   - 並列タスク[P]の場合、成功したタスクを続行し、失敗したタスクを報告
+   - デバッグのためのコンテキストを含む明確なエラーメッセージを提供
+   - 実装を進められない場合、次のステップを提案
+   - **重要** 完了したタスクについては、tasksファイルでタスクを[X]としてマークすることを確認
 
-7. Completion validation:
-   - Verify all required tasks are completed
-   - Check that implemented features match the original specification
-   - Validate that tests pass and coverage meets requirements
-   - Confirm the implementation follows the technical plan
-   - Report final status with summary of completed work
+7. 完了検証:
+   - 必要なすべてのタスクが完了していることを確認
+   - 実装された機能が元の仕様と一致していることを確認
+   - テストが合格し、カバレッジが要件を満たしていることを検証
+   - 実装が技術計画に従っていることを確認
+   - 完了した作業の概要を含む最終ステータスを報告
 
-Note: This command assumes a complete task breakdown exists in tasks.md. If tasks are incomplete or missing, suggest running `/tasks` first to regenerate the task list.
+注意: このコマンドは、tasks.mdに完全なタスク分解が存在することを前提としています。タスクが不完全または欠落している場合、タスクリストを再生成するために`/tasks`を最初に実行することを提案します。

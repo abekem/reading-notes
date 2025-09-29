@@ -1,43 +1,43 @@
 ---
-description: Execute the implementation planning workflow using the plan template to generate design artifacts.
+description: 設計アーティファクトを生成するために、計画テンプレートを使用して実装計画ワークフローを実行します。
 ---
 
-The user input to you can be provided directly by the agent or as a command argument - you **MUST** consider it before proceeding with the prompt (if not empty).
+ユーザー入力は、エージェントによって直接提供されるか、コマンド引数として提供される可能性があります。**必ず**それを考慮してプロンプトを進めてください（空でない場合）。
 
-User input:
+ユーザー入力:
 
 $ARGUMENTS
 
-Given the implementation details provided as an argument, do this:
+提供された実装の詳細に基づいて、以下を実行してください:
 
-1. Run `.specify/scripts/bash/setup-plan.sh --json` from the repo root and parse JSON for FEATURE_SPEC, IMPL_PLAN, SPECS_DIR, BRANCH. All future file paths must be absolute.
-   - BEFORE proceeding, inspect FEATURE_SPEC for a `## Clarifications` section with at least one `Session` subheading. If missing or clearly ambiguous areas remain (vague adjectives, unresolved critical choices), PAUSE and instruct the user to run `/clarify` first to reduce rework. Only continue if: (a) Clarifications exist OR (b) an explicit user override is provided (e.g., "proceed without clarification"). Do not attempt to fabricate clarifications yourself.
-2. Read and analyze the feature specification to understand:
-   - The feature requirements and user stories
-   - Functional and non-functional requirements
-   - Success criteria and acceptance criteria
-   - Any technical constraints or dependencies mentioned
+1. リポジトリのルートから`.specify/scripts/bash/setup-plan.sh --json`を実行し、JSONを解析してFEATURE_SPEC、IMPL_PLAN、SPECS_DIR、BRANCHを取得します。以降のファイルパスはすべて絶対パスでなければなりません。
+   - 進行する前に、FEATURE_SPECに`## Clarifications`セクションがあり、少なくとも1つの`Session`サブヘッディングが含まれていることを確認します。これが欠けている場合、または明らかに曖昧な領域が残っている場合（曖昧な形容詞、未解決の重要な選択肢）、一時停止してユーザーに`/clarify`を最初に実行するよう指示します。以下の場合にのみ続行してください: (a) 明確化が存在する、または(b) 明確化なしで進行するという明示的なユーザーの指示がある（例: "明確化なしで進行"）。自分で明確化を作成しようとしないでください。
+2. 機能仕様を読み取り、分析して以下を理解します:
+   - 機能要件とユーザーストーリー
+   - 機能的および非機能的要件
+   - 成功基準と受け入れ基準
+   - 記載されている技術的制約や依存関係
 
-3. Read the constitution at `.specify/memory/constitution.md` to understand constitutional requirements.
+3. `.specify/memory/constitution.md`にある憲法を読み取り、憲法上の要件を理解します。
 
-4. Execute the implementation plan template:
-   - Load `.specify/templates/plan-template.md` (already copied to IMPL_PLAN path)
-   - Set Input path to FEATURE_SPEC
-   - Run the Execution Flow (main) function steps 1-9
-   - The template is self-contained and executable
-   - Follow error handling and gate checks as specified
-   - Let the template guide artifact generation in $SPECS_DIR:
-     * Phase 0 generates research.md
-     * Phase 1 generates data-model.md, contracts/, quickstart.md
-     * Phase 2 generates tasks.md
-   - Incorporate user-provided details from arguments into Technical Context: $ARGUMENTS
-   - Update Progress Tracking as you complete each phase
+4. 実装計画テンプレートを実行:
+   - `.specify/templates/plan-template.md`を読み込みます（すでにIMPL_PLANパスにコピー済み）
+   - 入力パスをFEATURE_SPECに設定
+   - 実行フロー（メイン）関数のステップ1〜9を実行
+   - テンプレートは自己完結型で実行可能
+   - 指定されたエラーハンドリングとゲートチェックに従う
+   - テンプレートに従って$SPECS_DIRでアーティファクトを生成:
+     * フェーズ0でresearch.mdを生成
+     * フェーズ1でdata-model.md、contracts/、quickstart.mdを生成
+     * フェーズ2でtasks.mdを生成
+   - 引数から提供されたユーザーの詳細を技術コンテキストに組み込む: $ARGUMENTS
+   - 各フェーズを完了するごとに進捗追跡を更新
 
-5. Verify execution completed:
-   - Check Progress Tracking shows all phases complete
-   - Ensure all required artifacts were generated
-   - Confirm no ERROR states in execution
+5. 実行が完了したことを確認:
+   - 進捗追跡がすべてのフェーズが完了したことを示していることを確認
+   - 必要なすべてのアーティファクトが生成されたことを確認
+   - 実行にエラー状態がないことを確認
 
-6. Report results with branch name, file paths, and generated artifacts.
+6. 結果をブランチ名、ファイルパス、および生成されたアーティファクトとともに報告します。
 
-Use absolute paths with the repository root for all file operations to avoid path issues.
+すべてのファイル操作でリポジトリルートを基準とした絶対パスを使用して、パスの問題を回避してください。
