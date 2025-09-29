@@ -1,50 +1,50 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Reading Notes App Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. User-Centric Design
+入力の手間を最小限に抑えることを最優先とする。自動入力補完、音声入力、OCRなどの技術を活用し、ユーザー体験を向上させる。
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Accessibility
+アプリはすべてのユーザーにとって利用可能であるべき。視覚障害者向けのスクリーンリーダー対応、キーボード操作の最適化、多言語対応を含む。
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Test-Driven Development (TDD)
+テスト駆動開発を必須とする。すべての機能はテストが記述され、ユーザーによって承認された後に実装されるべき。
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Integration with External Services
+外部サービス（例: 書籍データベース、クラウドストレージ）との統合を重視し、シームレスなデータ同期を実現する。
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Data Privacy
+ユーザーのデータプライバシーを最優先とする。データは暗号化され、ユーザーの明示的な同意なしに共有されない。
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Additional Constraints
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### Technology Stack
+- フロントエンド: React
+- バックエンド: Node.js
+- データベース: PostgreSQL
+- デプロイ: AWS
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+### Performance Standards
+- 初回ロード時間: 3秒以内
+- ユーザー操作の応答時間: 100ms以下
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Development Workflow
+
+### Code Review Process
+- すべてのプルリクエストは少なくとも2人のレビューを必要とする。
+- コードは自動テストをパスし、静的解析ツールによるチェックをクリアする必要がある。
+
+### Quality Gates
+- カバレッジ: 90%以上
+- 重大なバグゼロを目指す。
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+この憲法は他のすべてのプラクティスに優先する。修正には文書化、承認、移行計画が必要。
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+- すべてのプルリクエスト/レビューはこの憲法への準拠を確認する必要がある。
+- 複雑さは正当化されなければならない。
+- ランタイム開発ガイダンスには[GUIDANCE_FILE]を使用する。
+
+**Version**: 1.0.0 | **Ratified**: 2025-09-29 | **Last Amended**: 2025-09-29
